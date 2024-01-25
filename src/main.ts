@@ -1,10 +1,18 @@
+//Dependencies
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import pino from "pino";
+import pinoHttp from "pino-http";
+//Mongo API
 import { MongoConnect } from "./services/MongoConnect";
+//Middleware
 import errorHandler from "./middleware/exceptions";
+//Services
 import { PostService } from "./services/PostService";
+//Controllers
 import { PostController } from "./controller/PostController";
+//Server Router
 import { PostRouter } from "./routes/routes";
 
 //Dotenv
@@ -22,8 +30,36 @@ async function run() {
   app.use(helmet());
   app.use(cors());
 
-  //DB connection config
+  //Logger conf
+  const loggerConf = pino({
+    level: process.env.NODE_ENV === "development" ? "debug" : "info",
+    transport: {
+      targets: [
+        {
+          target: "pino-pretty",
+        },
+        {
+          target: "pino/file",
+          options: {
+            destination: "logs/app.log",
+          },
+        },
+        {
+          level: "error",
+          target: "pino/file",
+          options: {
+            destination: "logs/app-error.log",
+          },
+        },
+      ],
+    },
+  });
+  //Starting the app
   try {
+    const pinoLogger = pinoHttp(loggerConf);
+
+    app.use(pinoLogger);
+
     const mongoConnection = new MongoConnect(URI, DBNAME);
     await mongoConnection.connectDB();
     console.log("Succesfully connected to MongoDB!");
@@ -45,7 +81,6 @@ async function run() {
     process.exit(1); //Exiting now
   }
 
-  //Else
   //Services & Controller
 
   app.listen(PORT, () => {
