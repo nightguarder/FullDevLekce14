@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+    mongo:
+        ports:
+            - '27017:27017'
+        container_name: dkrmongo
+        restart: always
+        volumes:
+        - ./data:/data/db
+        logging:
+            options:
+                max-size: 1g
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+        image: mongo
+        

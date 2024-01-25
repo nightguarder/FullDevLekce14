@@ -1,0 +1,38 @@
+@url = http://localhost:3000
+@deletepost = 65a06239fac98182b6d9b910
+@changepost = 65a06239fac98182b6d9b910
+@singlepost = 65a06239fac98182b6d9b910
+@date = "{{$datetime iso8601}}"
+### 
+//Return All blog posts
+GET  {{url}}/api/v1/posts HTTP/1.1
+###
+//Return single blog post
+GET {{url}}/api/v1/posts/{{singlepost}} HTTP/1.1
+###
+//Add new blog post
+POST {{url}}/api/v1/posts HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Hello World!",
+    "description": "First post",
+    "author": "Cyril",
+    "published": true
+}
+
+###
+//Delete
+DELETE {{url}}/api/v1/posts/{{deletepost}} HTTP/1.1
+
+###
+//Update
+PUT {{url}}/api/v1/posts/{{changepost}} HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Changed title",
+  "author": "Admin",
+  "description": "Edited post",
+  "published": true
+}

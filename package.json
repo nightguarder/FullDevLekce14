@@ -1,0 +1,51 @@
+{
+  "name": "fulldevlekce14",
+  "version": "1.0.0",
+  "description": "Deployment w/Docker a nastavení GitHub Actions",
+  "main": "main.js",
+  "scripts": {
+    "start": "npx tsc src/main.ts",
+    "server": "ts-node-dev src/main.ts",
+    "build": "tsc --build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint . --ignore-path .eslintignore --ext .js,.ts",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nightguarder/FullDevLekce14.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Docker",
+    "CI/CD",
+    "UnitTest"
+  ],
+  "author": "CSteger",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/nightguarder/FullDevLekce14/issues"
+  },
+  "homepage": "https://github.com/nightguarder/FullDevLekce14#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "joi": "^17.11.0",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.4",
+    "parser,": "link:@typescript-eslint/parser,"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prettier": "^2.8.8",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
+  }
+}
