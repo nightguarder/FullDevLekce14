@@ -7,7 +7,7 @@
     "start": "npx tsc src/main.ts",
     "server": "ts-node-dev src/main.ts",
     "build": "tsc --build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx vitest",
     "lint": "npx eslint . --ignore-path .eslintignore --ext .js,.ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
   },
@@ -49,6 +49,7 @@
     "eslint-plugin-react": "^7.33.2",
     "prettier": "^2.8.8",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
   }
 }
